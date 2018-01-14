@@ -1,0 +1,149 @@
+<div class="wrapper text-center">
+    <div class="page-header clear-filter" filter-color="orange">
+            <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/chambre.jpg');">
+            </div>
+<div class="container">
+
+    <div class="content-center brand">
+            <div class="card card-signup" data-background-color="orange" style="margin-top:200px">
+                    <form class="form"   [formGroup]="signupForm" (ngSubmit)="register()" novalidate>
+                        <div class="header text-center">
+                            <h4 class="title title-up">INSCRIPTION</h4>
+                            <div class="social-line">
+                                <a href="#" class="btn btn-neutral btn-facebook btn-icon btn-round">
+                                    <i class="fa fa-facebook-square"></i>
+                                </a>
+                                <a href="#" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#" class="btn btn-neutral btn-google btn-icon btn-round">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                           <div class="input-group form-group-no-border">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons users_circle-08"></i>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Nom" formControlName="nom">
+                            </div>
+                            <div class="input-group form-group-no-border">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons users_circle-08"></i>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Prenom" formControlName="prenom">
+                            </div>
+                            <div class="input-group form-group-no-border">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons emoticons_satisfied"></i>
+                                </span>
+                                <select class="form-control"  formControlName="sexe">
+                                    <option value="" selected disabled>Sexe</option>
+                                    <option value = "M">Masculin</option>
+                                    <option value="F"> Feminin </option>
+                                </select>
+                            </div>
+                            <div class="input-group form-group-no-border">
+                                    <span class="input-group-addon">
+                                        <i class="now-ui-icons shopping_credit-card"></i>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Numero CNI..." formControlName="cni">
+                                </div>
+                                <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons shopping_credit-card"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Numero carte etudiant..." formControlName="ce">
+                                    </div>
+                                    <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <i class="now-ui-icons education_hat"></i>
+                                            </span>
+                                            <select class="form-control" formControlName="departement">
+                                                <option value="" selected disabled>Departement</option>
+                                                <option   *ngFor="let dep of departements" value = "{{dep.id}}"><span style="background-color:rgb(228, 13, 31)">{{dep.nom}}</span></option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group form-group-no-border">
+                                                <span class="input-group-addon">
+                                                    <i class="now-ui-icons business_chart-bar-32"></i>
+                                                </span>
+                                                <select class="form-control loader_refresh"  formControlName="niveau">
+                                                    <option value="" selected disabled>Niveau d'etude...</option>
+                                                    <option *ngFor="let niveau of niveaux" value = "{{niveau.id}}">{{niveau.intitule}}</option>
+                                                    
+                                                </select>
+                                            </div>
+                            <div class="input-group form-group-no-border">
+                                    <span class="input-group-addon">
+                                        <i class="now-ui-icons ui-1_email-85"></i>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Email..." formControlName="email">
+                                </div>
+                            <div class="input-group form-group-no-border">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons objects_key-25"></i>
+                                </span>
+                                <input type="password" placeholder="Mot de passe" class="form-control" formControlName="password" />
+                            </div>
+                            <div class="input-group form-group-no-border">
+                                    <span class="input-group-addon">
+                                        <i class="now-ui-icons objects_key-25"></i>
+                                    </span>
+                                    <input type="password" placeholder="Confirmer Mot de passe" class="form-control" formControlName="confirmP" />
+                                    <span class="error" *ngIf="  signupForm.controls.password.value != signupForm.controls.confirmP.value">Erreur de confirmation</span>
+                                </div>
+                        </div>
+                        <div class="footer text-center">
+                            <button type="submit" [disabled]=" ! signupForm.valid || loading" class="btn btn-neutral btn-round btn-lg">Valider</button>
+                        </div>
+                    </form>
+                    
+                </div>
+        
+        </div>
+        </div>
+
+
+</div>
+
+
+<footer class="footer" data-background-color="black">
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://www.creative-tim.com">
+                        ESP
+                    </a>
+                </li>
+                <li>
+                    <a href="http://presentation.creative-tim.com">
+                        A propos de nous
+                    </a>
+                </li>
+                <li>
+                    <a href="http://blog.creative-tim.com">
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                        MIT License
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>, Copyright
+            <a href="http://www.invisionapp.com" target="_blank">ESP</a>/
+            <a href="https://www.creative-tim.com" target="_blank">UCAD</a>.
+        </div>
+    </div>
+</footer>
+</div>
+

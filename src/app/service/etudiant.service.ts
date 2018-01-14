@@ -1,0 +1,42 @@
+import { Injectable } from '@angular/core';
+import { Http} from '@angular/http';
+import {DataAccessLayer} from './data-access-layer';
+import { User } from '../authentification/user';
+import { Etudiant } from '../models/Etudiant';
+import { CodeVerif } from '../models/codeVerif';
+
+
+@Injectable()
+export class EtudiantService {
+    dal: DataAccessLayer;
+
+    constructor(protected http: Http) {
+       this.dal = new DataAccessLayer(this.http);
+    }
+    create(etudiant: Etudiant){
+        return this.dal.create(['etudiants'], etudiant);
+    }
+    getAllEtudiants() {
+        return this.dal.get(['etudiants']);
+    }
+    getAllDepartements(){
+        return this.dal.get(['departements']);
+    }
+    getAllNiveaux(){
+        return this.dal.get(['niveaus']);
+    }
+    getEtudiantById(id: string) {
+        return this.dal.get(['etudiants', id]);
+    }
+    
+    createProfile(id: string, profile: Etudiant) {
+        return this.dal.create(['etudiants', id], profile);
+    }
+    updateProfile(etudiant: Etudiant) {
+        return this.dal.update(['etudiants'], etudiant);
+    }
+    
+   
+
+
+}

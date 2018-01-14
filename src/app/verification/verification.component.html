@@ -6,9 +6,9 @@
   
         <div class="content-center brand">
                 <div class="card card-signup" data-background-color="orange">
-                        <form class="form"   [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+                        <form class="form"   [formGroup]="verifierForm" (ngSubmit)="verifierCode()" novalidate>
                             <div class="header text-center">
-                                <h4 class="title title-up">Connexion</h4>
+                                <h4 class="title title-up">Verification Code</h4>
                                 <div class="social-line">
                                     <a href="#" class="btn btn-neutral btn-facebook btn-icon btn-round">
                                         <i class="fa fa-facebook-square"></i>
@@ -22,17 +22,12 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="input-group form-group-no-border">
-                                    <span class="input-group-addon">
-                                        <i class="now-ui-icons users_circle-08"></i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Nom utilisateur" formControlName="email">
-                                </div>
+                                <label class="label label-info">Un code vous a été envoyé sur votre email</label>
                                 <div class="input-group form-group-no-border">
                                     <span class="input-group-addon">
                                         <i class="now-ui-icons text_caps-small"></i>
                                     </span>
-                                    <input type="password" placeholder="Mot de passe" class="form-control" formControlName="password" />
+                                    <input type="text" placeholder="Code de verification..." class="form-control" formControlName="code" />
                                 </div>
                                
                                 <!-- If you want to add a checkbox to this form, uncomment this code -->
@@ -44,13 +39,11 @@
                   </div> -->
                             </div>
                             <div class="footer text-center">
-                                <button type="submit" [disabled]=" ! loginForm.valid || loading" class="btn btn-neutral btn-round btn-lg">Connecter</button>
-                            </div>
-                            <div class="col text-center">
-                                    <a routerLink='/inscription'  class="btn btn-simple btn-round btn-white btn-lg" >Créer un compte</a>
+                                <button type="submit" [disabled]=" ! verifierForm.valid || loading" class="btn btn-neutral btn-round btn-lg">Confirmer</button>
                             </div>
                         </form>
-                        
+                        <label class="alert alert-danger" *ngIf="error">{{error}}</label>
+
                     </div>
             
             </div>
