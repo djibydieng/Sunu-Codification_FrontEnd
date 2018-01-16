@@ -1,19 +1,3 @@
-/*import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-authentification',
-  templateUrl: './authentification.component.html',
-  styleUrls: ['./authentification.component.css']
-})
-export class AuthentificationComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}*/
-
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
@@ -23,6 +7,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { AlertService } from './alert.service';
 import  { ValidationService } from './validation.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-authentification',
@@ -35,7 +20,8 @@ export class AuthentificationComponent implements OnInit {
     returnUrl: string;
     error: string;
     name: string;
-
+    hide = true;
+    
     show = false;
 
 
@@ -45,6 +31,7 @@ export class AuthentificationComponent implements OnInit {
       private authenticationService: AuthenticationService,
       private fb: FormBuilder,
       private alertService: AlertService,
+      private snackBar: MatSnackBar
     ){}
 
   ngOnInit() {
@@ -71,9 +58,8 @@ export class AuthentificationComponent implements OnInit {
                       this.router.navigate(['/accueil']);
               },
               error => {
-                  /*this.snackBar.open("Email ou mot de passe incorrecte","",{
-                    duration : 1000*/
-                    console.log("Email ou mot de passe incorrecte");
+                  this.snackBar.open("Email ou mot de passe incorrecte","",{
+                    duration : 3000})
                     this.loading = false;
               });
   }

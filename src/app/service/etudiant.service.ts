@@ -35,6 +35,14 @@ export class EtudiantService {
     updateProfile(etudiant: Etudiant) {
         return this.dal.update(['etudiants'], etudiant);
     }
+    getAllCodifications()
+    {
+        return this.dal.get(['codifications']);
+    }
+    getAllChambres()
+    {
+        return this.dal.get(['chambres']);
+    }
     
    
 

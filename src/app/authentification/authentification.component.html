@@ -5,7 +5,7 @@
 <div class="container">
   
         <div class="content-center brand">
-                <div class="card card-signup" data-background-color="orange">
+                <div class="card card-signup" data-background-color="blue">
                         <form class="form"   [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
                             <div class="header text-center">
                                 <h4 class="title title-up">Connexion</h4>
@@ -22,18 +22,23 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="input-group form-group-no-border">
-                                    <span class="input-group-addon">
+                               <!-- <div class="input-group form-group-no-border">-->
+                                   <!-- <span class="input-group-addon">
                                         <i class="now-ui-icons users_circle-08"></i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Nom utilisateur" formControlName="email">
-                                </div>
-                                <div class="input-group form-group-no-border">
-                                    <span class="input-group-addon">
+                                    </span>-->
+                                    <mat-form-field>
+                                    <input matInput type="email" class="form-control" placeholder="Enter your login" formControlName="email">
+                                    </mat-form-field>
+                                <!--</div>-->
+                              <!-- <div class="input-group form-group-no-border">-->
+                                   <!-- <span class="input-group-addon">
                                         <i class="now-ui-icons text_caps-small"></i>
-                                    </span>
-                                    <input type="password" placeholder="Mot de passe" class="form-control" formControlName="password" />
-                                </div>
+                                    </span>-->
+                                    <mat-form-field>
+                                    <input matInput  class="form-control"  formControlName="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+                                   <mat-icon matSuffix (click)="hide = !hide" >{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                                  </mat-form-field>
+                               <!-- </div>-->
                                
                                 <!-- If you want to add a checkbox to this form, uncomment this code -->
                                 <!-- <div class="checkbox">

@@ -5,7 +5,7 @@
 <div class="container">
 
     <div class="content-center brand">
-            <div class="card card-signup" data-background-color="orange" style="margin-top:200px">
+            <div class="card card-signup" data-background-color="blue" style="margin-top:200px">
                     <form class="form"   [formGroup]="signupForm" (ngSubmit)="register()" novalidate>
                         <div class="header text-center">
                             <h4 class="title title-up">INSCRIPTION</h4>
@@ -38,11 +38,10 @@
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons emoticons_satisfied"></i>
                                 </span>
-                                <select class="form-control"  formControlName="sexe">
-                                    <option value="" selected disabled>Sexe</option>
-                                    <option value = "M">Masculin</option>
-                                    <option value="F"> Feminin </option>
-                                </select>
+                                <mat-select class="form-control" placeholder="Sexe" formControlName="sexe">
+                                    <mat-option [value]="M">Masculin</mat-option>
+                                    <mat-option [value]="F">Feminin</mat-option>
+                                </mat-select>
                             </div>
                             <div class="input-group form-group-no-border">
                                     <span class="input-group-addon">
@@ -56,7 +55,7 @@
                                         </span>
                                         <input type="text" class="form-control" placeholder="Numero carte etudiant..." formControlName="ce">
                                     </div>
-                                    <div class="input-group form-group-no-border">
+                                   <!-- <div class="input-group form-group-no-border">
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons education_hat"></i>
                                             </span>
@@ -64,8 +63,18 @@
                                                 <option value="" selected disabled>Departement</option>
                                                 <option   *ngFor="let dep of departements" value = "{{dep.id}}"><span style="background-color:rgb(228, 13, 31)">{{dep.nom}}</span></option>
                                             </select>
-                                        </div>
+                                        </div>-->
                                         <div class="input-group form-group-no-border">
+                                                <span class="input-group-addon">
+                                                    <i class="now-ui-icons education_hat"></i>
+                                                </span>
+                                        <mat-select placeholder="Departement" class="form-control" formControlName="departement">
+                                                <mat-option *ngFor="let dep of departements" [value]="dep.id">
+                                                  {{ dep.nom }}
+                                                </mat-option>
+                                       </mat-select>
+                                       </div>
+                                       <!-- <div class="input-group form-group-no-border">
                                                 <span class="input-group-addon">
                                                     <i class="now-ui-icons business_chart-bar-32"></i>
                                                 </span>
@@ -74,12 +83,33 @@
                                                     <option *ngFor="let niveau of niveaux" value = "{{niveau.id}}">{{niveau.intitule}}</option>
                                                     
                                                 </select>
-                                            </div>
+                                            </div>-->
+                                            <div class="input-group form-group-no-border">
+                                                    <span class="input-group-addon">
+                                                        <i class="now-ui-icons business_chart-bar-32"></i>
+                                                    </span>
+                                            <mat-select placeholder="Niveau" class="form-control"  formControlName="niveau">
+                                                    <mat-option *ngFor="let niveau of niveaux" [value]="niveau.id">
+                                                      {{ niveau.intitule}}
+                                                    </mat-option>
+                                           </mat-select>
+                                           </div>
                             <div class="input-group form-group-no-border">
                                     <span class="input-group-addon">
                                         <i class="now-ui-icons ui-1_email-85"></i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Email..." formControlName="email">
+                                   <!-- <input type="text" class="form-control" placeholder="Email..." formControlName="email">-->
+                                   <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Email" [formControl]="emailFormControl"
+                                               [errorStateMatcher]="matcher">
+                                        <mat-hint>Errors appear instantly!</mat-hint>
+                                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                          Please enter a valid email address
+                                        </mat-error>
+                                        <mat-error *ngIf="emailFormControl.hasError('required')">
+                                          Email is <strong>required</strong>
+                                        </mat-error>
+                                      </mat-form-field>
                                 </div>
                             <div class="input-group form-group-no-border">
                                 <span class="input-group-addon">

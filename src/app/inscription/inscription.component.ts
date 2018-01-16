@@ -3,7 +3,9 @@ import {
   FormGroup,
   FormControl,
   FormBuilder,
-  Validators
+  Validators,
+  FormGroupDirective,
+  NgForm
 } from "@angular/forms";
 import { Router } from '@angular/router';
 import { AlertService } from '../authentification/alert.service';
@@ -13,6 +15,15 @@ import { User } from '../authentification/user';
 import { Etudiant } from '../models/Etudiant';
 import { Departement } from '../models/departement';
 import { Niveau } from '../models/niveau';
+import { ErrorStateMatcher } from '@angular/material';
+
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-inscription',
@@ -34,6 +45,13 @@ export class InscriptionComponent implements OnInit {
     private router: Router
   ) {}
 
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  matcher = new MyErrorStateMatcher();
+  
   ngOnInit() {
     this.createForm();
     this.getDepartements();
