@@ -18,6 +18,9 @@
                   
                 </md-card-header>
                 <mat-card-content>
+                <div *ngIf="!ready" align="center">
+                    <mat-spinner class="spinner"></mat-spinner>
+                </div>
             <mat-table *ngIf="ready" #table [dataSource]="dataSource">
 
               <ng-container matColumnDef="cne">

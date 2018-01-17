@@ -43,6 +43,18 @@ export class EtudiantService {
     {
         return this.dal.get(['chambres']);
     }
+    getAllBatiments()
+    {
+        return this.dal.get(['batiments']);
+    }
+    getAllEtages()
+    {
+        return this.dal.get(['etages']);
+    }
+    getAllCouloirs()
+    {
+        return this.dal.get(['couloirs']);
+    }
     
    
 
