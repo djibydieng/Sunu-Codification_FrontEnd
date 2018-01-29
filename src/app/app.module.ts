@@ -4,7 +4,7 @@ import{ HttpModule,Http } from '@angular/http';
 import{ ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule,
-         MatTabsModule,MatStepperModule, MatSelectModule, MatInputModule, MatIconModule, MatExpansionModule, MatProgressSpinnerModule, MatTableModule, MatPaginatorModule, MatGridListModule, MatSnackBarModule, MatFormFieldModule
+         MatTabsModule,MatStepperModule, MatSelectModule, MatInputModule, MatIconModule, MatExpansionModule, MatProgressSpinnerModule, MatTableModule, MatPaginatorModule, MatGridListModule, MatSnackBarModule, MatFormFieldModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
@@ -54,7 +54,8 @@ import { ListeCodificationComponent } from './liste-codification/liste-codificat
     MatGridListModule,
     MatSnackBarModule
   ],
-  providers: [AuthenticationService,AlertService,AuthGuard,EtudiantService],
+  providers: [AuthenticationService,AlertService,AuthGuard,EtudiantService,
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

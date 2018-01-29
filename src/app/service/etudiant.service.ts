@@ -55,6 +55,11 @@ export class EtudiantService {
     {
         return this.dal.get(['couloirs']);
     }
+    createCodification(args:any[],data:any)
+    {
+        return this.dal.create(['codifications'],data);
+        
+    }
     
    
 

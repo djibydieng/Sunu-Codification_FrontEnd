@@ -1,15 +1,15 @@
-<div class="wrapper text-center">
+<div class="wrapper ">
         <div class="page-header clear-filter" filter-color="orange">
                 <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/chambre.jpg');">
                 </div>
-<div class="container">
+   <div class="container">
   
-        <div class="content-center brand">
-                <div class="card card-signup" data-background-color="blue">
+     <div class="content-center ">
+               <!-- <div class="card card-signup" data-background-color="blue">
                         <form class="form"   [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
-                            <div class="header text-center">
-                                <h4 class="title title-up">Connexion</h4>
-                                <div class="social-line">
+                            <div class="header text-center" style="background-color:rgba(15, 58, 177, 0.925);">
+                                <h2 class="title title-up">Connexion</h2>
+                              <!-- <div class="social-line">
                                     <a href="#" class="btn btn-neutral btn-facebook btn-icon btn-round">
                                         <i class="fa fa-facebook-square"></i>
                                     </a>
@@ -19,87 +19,150 @@
                                     <a href="#" class="btn btn-neutral btn-google btn-icon btn-round">
                                         <i class="fa fa-google-plus"></i>
                                     </a>
-                                </div>
+                                </div>--//
                             </div>
                             <div class="card-body">
-                               <!-- <div class="input-group form-group-no-border">-->
-                                   <!-- <span class="input-group-addon">
-                                        <i class="now-ui-icons users_circle-08"></i>
-                                    </span>-->
+                                    <!--<i class="material-icons">email</i>
                                     <mat-form-field>
                                     <input matInput type="email" class="form-control" placeholder="Enter your login" formControlName="email">
-                                    </mat-form-field>
-                                <!--</div>-->
-                              <!-- <div class="input-group form-group-no-border">-->
-                                   <!-- <span class="input-group-addon">
-                                        <i class="now-ui-icons text_caps-small"></i>
-                                    </span>-->
-                                    <mat-form-field>
-                                    <input matInput  class="form-control"  formControlName="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-                                   <mat-icon matSuffix (click)="hide = !hide" >{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                                  </mat-form-field>
-                               <!-- </div>-->
+                                    </mat-form-field>--//
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">email</i>
+                                        </span>
+                                        <div class="form-group label-floating is-empty">
+                                              <label class="control-label">Login</label>
+                                              <input type="email"  formControlName="email" class="form-control" />
+                                        <span class="material-input"></span></div>
+                                    </div>
+
+                                  
+                                  
+									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="material-icons">lock_outline</i>
+										</span>
+										<div class="form-group label-floating">
+			                                <label class="control-label">Password</label>
+			                                    <input  type="password"  formControlName="password"  class="form-control">
+			                                </div>
+										</div>
                                
                                 <!-- If you want to add a checkbox to this form, uncomment this code -->
-                                <!-- <div class="checkbox">
+                               <!-- <div class="checkbox">
                 <input id="checkboxSignup" type="checkbox">
                   <label for="checkboxSignup">
-                  Unchecked
+                  Garder ma session active
                   </label>
-                  </div> -->
+                  </div> --//
                             </div>
                             <div class="footer text-center">
-                                <button type="submit" [disabled]=" ! loginForm.valid || loading" class="btn btn-neutral btn-round btn-lg">Connecter</button>
+                                <button type="submit"  class="btn btn-info btn-round" [disabled]=" ! loginForm.valid || loading" >Connecter</button>
                             </div>
                             <div class="col text-center">
                                     <a routerLink='/inscription'  class="btn btn-simple btn-round btn-white btn-lg" >Créer un compte</a>
                             </div>
                         </form>
-                        
                     </div>
             
-            </div>
-            </div>
-  
+           
+            </div>-->
+      
  
+
+
+<div class="limiter">
+   <!-- <div class="container-login100" style="background-image: url('./assets/images/bg-01.jpg');">-->
+        <div class="wrap-login100" style="margin-left:150px; margin-top:70px;">
+            <form class="login100-form validate-form" class="form"   [formGroup]="loginForm" (ngSubmit)="login()" novalidate >
+                <span class="login100-form-logo">
+                    <i class="zmdi zmdi-landscape"></i>
+                </span>
+
+                <span class="login100-form-title p-b-34 p-t-27">
+                    Connexion
+                </span>
+            
+                <div class="wrap-input100 validate-input" data-validate = "Enter username" >   
+                    <input class="input100" type="text" formControlName="email"  name="username" placeholder="Username" style="height:50px;">
+                    <span class="focus-input100" data-placeholder="&#xf207;" align="left" ></span>
+                    
+                </div>
+            <br/>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input class="input100" [type]="hide ? 'password' : 'text'" name="pass" placeholder="Password" formControlName="password" style="height:30px;">
+                    <span class="focus-input100" data-placeholder="&#xf191;" align="left"></span>
+                    <mat-icon matSuffix (click)="hide = !hide" style="margin-left:300px;">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                </div>
+
+              <!--  <div class="contact100-form-checkbox">
+                    <input class="input-checkbox100" formControlName="password" id="ckb1" type="checkbox" name="remember-me">
+                    <label class="label-checkbox100" for="ckb1">
+                        Garder ma session active
+                    </label>
+                </div>-->
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" *ngIf="!loading" class="login100-form-btn" >
+                        Connecter
+                    </button>
+                    <img *ngIf="loading" src="./assets/images/icons/loading.gif" width="50" height="50" />
+                </div>
+
+                <div class="text-center p-t-90">
+                    Pas de compte?
+                    <a class="txt1"routerLink='/inscription'>
+                        inscrivez-vous ici?
+                    </a>
+                </div>
+            </form>
+        </div>
+   <!-- </div>-->
+</div>
+
+
+<div id="dropDownSelect1"></div>
+</div>
 </div>
 
 
 <footer class="footer" data-background-color="black">
-        <div class="container">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="https://www.creative-tim.com">
-                            ESP
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://presentation.creative-tim.com">
-                            A propos de nous
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://blog.creative-tim.com">
-                            Blog
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
-                            MIT License
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="copyright">
-                &copy;
-                <script>
-                    document.write(new Date().getFullYear())
-                </script>, Copyright
-                <a href="http://www.invisionapp.com" target="_blank">ESP</a>/
-                <a href="https://www.creative-tim.com" target="_blank">UCAD</a>.
-            </div>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://www.creative-tim.com">
+                        ESP
+                    </a>
+                </li>
+                <li>
+                    <a href="http://presentation.creative-tim.com">
+                        A propos de nous
+                    </a>
+                </li>
+                <li>
+                    <a href="http://blog.creative-tim.com">
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                        MIT License
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>, Copyright
+            <a href="http://www.invisionapp.com" target="_blank">ESP</a>/
+            <a href="https://www.creative-tim.com" target="_blank">UCAD</a>.
         </div>
-    </footer>
+    </div>
+</footer>
 </div>
 <router-outlet></router-outlet>

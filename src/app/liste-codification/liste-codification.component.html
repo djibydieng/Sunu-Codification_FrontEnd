@@ -3,7 +3,7 @@
           <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/chambre.jpg');">
           </div>
 <div class="container">
-  <div class="content-center brand">
+  <div class="content-center brand" style="margin-top:20px">
          <!-- <div class="card card-signup" data-background-color="blue" style="margin-top:200px">-->
            <mat-card>
               <md-card-header>
@@ -19,7 +19,7 @@
                 </md-card-header>
                 <mat-card-content>
                 <div *ngIf="!ready" align="center">
-                    <mat-spinner class="spinner"></mat-spinner>
+                    <mat-spinner class="spinner" align="center"></mat-spinner>
                 </div>
             <mat-table *ngIf="ready" #table [dataSource]="dataSource">
 
@@ -89,7 +89,7 @@
       </div>
 
 
-</div>
+
 
 
 <footer class="footer" data-background-color="black">
@@ -128,6 +128,7 @@
       </div>
   </div>
 </footer>
+</div>
 </div>
 
 

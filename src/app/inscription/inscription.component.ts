@@ -32,28 +32,33 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class InscriptionComponent implements OnInit {
   niveaux: Niveau[] = [];
-
+  value='click';
   signupForm: FormGroup;
   loading: Boolean;
   error: string;
   departements:Departement[]=[];
+  etudiant:Etudiant;
 
   constructor(
     private fb: FormBuilder,
     private etudiantService: EtudiantService,
     private alertService: AlertService,
     private router: Router
-  ) {}
+  ) {
+      this.createForm();
+   // this.resetEtudiant();
+  }
 
-  emailFormControl = new FormControl('', [
+  /*emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
-  ]);
+  ]);*/
 
   matcher = new MyErrorStateMatcher();
   
   ngOnInit() {
-    this.createForm();
+   // this.createForm();
+   //this.resetEtudiant();
     this.getDepartements();
     this.getNiveaux();
   }
@@ -86,7 +91,9 @@ export class InscriptionComponent implements OnInit {
           Validators.required])
       ],
       cni:[
-        ""
+        "",
+        Validators.compose([
+          Validators.required])
       ],
       ce:[
         "",
@@ -106,21 +113,18 @@ export class InscriptionComponent implements OnInit {
       email: [
         "",
         Validators.compose([
-          Validators.required,
           ValidationService.emailValidator
         ])
       ],
       password: [
         "",
         Validators.compose([
-          Validators.required,
           ValidationService.passwordValidator
         ])
       ],
       confirmP: [
         "",
         Validators.compose([
-          Validators.required,
           ValidationService.passwordValidator
         ])
       ],
@@ -143,12 +147,10 @@ export class InscriptionComponent implements OnInit {
     user.emailVerified = false;
     observable = this.etudiantService.create(user);
     observable.subscribe(
+      //this.etudiantService.create(user).subscribe(
       data => {
         this.alertService.success("Registration successful", true);
-        this.router.navigate([
-          "/verifierCode",
-          this.signupForm.controls.email.value
-        ]);
+        this.router.navigate(["/verifierCode",this.signupForm.controls.email.value]);
       },
       error => {
         this.alertService.error(error);
@@ -160,4 +162,7 @@ export class InscriptionComponent implements OnInit {
       }
     );
   }
+ /* resetEtudiant():void {
+    this.etudiant = new Etudiant({id:"",nom:"",prenom:"",sexe:"",numCNI:"",departementId:"",niveauId:"",email:"",password:"",emailVerified:false});
+  }*/
 }

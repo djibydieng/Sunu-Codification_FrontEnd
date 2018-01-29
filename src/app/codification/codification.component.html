@@ -4,7 +4,7 @@
           </div>
 <div class="container">
 
-  <div class="content-center brand">
+  <div class="content-center brand"  style="margin-top:0px;">
           <!--<div class="card card-signup" data-background-color="orange">-->
               <mat-card>
                   <md-card-header>
@@ -18,20 +18,29 @@
                     </md-card-title>
                   </md-card-header>
                   <mat-card-content>
+                    <div *ngIf="isCodified();else other_content">
+                      <p style="background-color:rgb(181, 247, 181); font-size:16px;">Vous vous etes déjà codifié </p>
+                          <div>
+                            <button mat-button (click)="goback()" >Retour a la page d'accueil</button>
+                          </div>
+                        
+                    </div>
+                    <ng-template #other_content>
               <mat-vertical-stepper [linear]="isLinear" style="background-color:lightskyblue;" >
                   <mat-step [stepControl]="firstFormGroup">
                     <form [formGroup]="firstFormGroup">
                       <ng-template matStepLabel>Choisissez votre batiment</ng-template>
                       
                         <!--<input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>-->
-                        <mat-form-field>
-                          <mat-select  formControlName="firstCtrl" [(value)]="bat" placeholder="Batiment" required>
+                        <mat-form-field editable="true">
+                          <mat-select  formControlName="firstCtrl" [(value)]="bat" placeholder="Batiment"  required>
+                            <span *ngIf="!ready" >
+                              <mat-progress-spinner mode = "indeterminate" align="center"></mat-progress-spinner>
+                            </span>
                             <mat-option>None</mat-option>
                             <mat-option *ngFor="let batiment of batiments" [value]="batiment.id">{{batiment.nomBatiment}}</mat-option>
                           </mat-select>
-                        </mat-form-field>
-                      {{selected1}}
-                      
+                        </mat-form-field> 
                       <div>
                         <button mat-button matStepperNext>Next</button>
                       </div>
@@ -59,7 +68,7 @@
                       <form [formGroup]="thirdFormGroup">
                         <ng-template  matStepLabel>Choisissez votre couloir</ng-template>
                         <mat-form-field>
-                          <mat-select  formControlName="thirdCtrl" [(value)]="coul" placeholder="Couloir" required>
+                          <mat-select  formControlName="thirdCtrl" [(value)]="coul"  placeholder="Couloir" required>
                             <mat-option>None</mat-option>
                             <span *ngFor="let couloir of couloirs">
                             <mat-option *ngIf="couloir.etageId == et" [value]="couloir.id">{{couloir.designation}}</mat-option>
@@ -73,10 +82,10 @@
                       </form>
                     </mat-step>
                     <mat-step [stepControl]="forthFormGroup">
-                        <form [formGroup]="forthFormGroup">
+                        <form [formGroup]="forthFormGroup" (ngSubmit)="add()">
                           <ng-template matStepLabel>Choisissez votre chambre</ng-template>
                           <mat-form-field>
-                            <mat-select  formControlName="forthCtrl" [(value)]="ch" placeholder="Chambre" required>
+                            <mat-select  formControlName="forthCtrl" [(value)]="ch" placeholder="Chambre" [(ngModel)]="codification.chambreId" required>
                               <mat-option>None</mat-option>
                               <span *ngFor="let chambre of chambres">
                                 <span *ngFor="let codif of codifications">
@@ -87,7 +96,7 @@
                           </mat-form-field>
                           <div>
                             <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button matStepperNext>Next</button>
+                            <button mat-button type="submit" matStepperNext>Next</button>
                           </div>
                         </form>
                       </mat-step>
@@ -95,68 +104,11 @@
                     <ng-template matStepLabel>Terminé</ng-template>
                     Félicitations vous avez terminé votre codification
                     <div>
-                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button (click)="goback()" >Retour a la page d'accueil</button>
                     </div>
                   </mat-step>
                 </mat-vertical-stepper>
-                <!--<form [formGroup]="myformGroup">
-                <mat-vertical-stepper [linear]="isLinear" formArrayName="items" style="background-color:lightskyblue;" >
-                          <mat-step   formGroupName='0' [stepControl]="items.get(0)" editable="true">
-                        <ng-template matStepLabel>Choisissez votre batiment</ng-template>
-                        <mat-form-field>
-                          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                        </mat-form-field>
-                        <div>
-                          <button mat-button matStepperNext>Next</button>
-                        </div>
-    
-                    </mat-step>
-                    <mat-step  formGroupName='1' [stepControl]="myformGroup.get('items').control">
-                      
-                        <ng-template matStepLabel>Choisissez votre etage</ng-template>
-                        <mat-form-field>
-                          <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                        </mat-form-field>
-                        <div>
-                          <button mat-button matStepperPrevious>Back</button>
-                          <button mat-button matStepperNext>Next</button>
-                        </div>
-                      
-                    </mat-step>
-                    <mat-step formGroupName="2" [stepControl]="myformGroup.get('items').controls">
-                        
-                          <ng-template  matStepLabel>Choisissez votre couloir</ng-template>
-                          <mat-form-field>
-                            <input matInput placeholder="Couloir" formControlName="thirdCtrl" required>
-                          </mat-form-field>
-                          <div>
-                            <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button matStepperNext>Next</button>
-                          </div>
-                        
-                      </mat-step>
-                      <mat-step formGroupName="3" [stepControl]="items.get([3])">
-                          
-                            <ng-template matStepLabel>Choisissez votre chambre</ng-template>
-                            <mat-form-field>
-                              <input matInput placeholder="Chambre" formControlName="forthCtrl" required>
-                            </mat-form-field>
-                            <div>
-                              <button mat-button matStepperPrevious>Back</button>
-                              <button mat-button matStepperNext>Next</button>
-                            </div>
-                          
-                        </mat-step>
-                    <mat-step  formGroupName="4" [stepControl]="items.get([4])">
-                      <ng-template matStepLabel>Terminé</ng-template>
-                      Félicitations vous avez terminé votre codification
-                      <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                      </div>
-                    </mat-step>
-                  
-                  </mat-vertical-stepper>
-                </form>-->
+                </ng-template>
                 </mat-card-content>
                 </mat-card>
 
@@ -166,8 +118,6 @@
       </div>
      </div>
 
-
-</div>
 
 
 <footer class="footer" data-background-color="black">
@@ -206,5 +156,6 @@
       </div>
   </div>
 </footer>
+</div>
 </div>
 <router-outlet></router-outlet>

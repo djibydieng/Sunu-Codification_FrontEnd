@@ -35,6 +35,7 @@ export class AuthentificationComponent implements OnInit {
     ){}
 
   ngOnInit() {
+      this.loading = false;
       // get return url from route parameters or default to '/'
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || null;
       this.name = this.returnUrl && this.returnUrl.split('/').filter(str => str)[0];

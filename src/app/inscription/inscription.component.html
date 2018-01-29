@@ -1,10 +1,10 @@
-<div class="wrapper text-center">
+
     <div class="page-header clear-filter" filter-color="orange">
             <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/chambre.jpg');">
             </div>
 <div class="container">
 
-    <div class="content-center brand">
+   <!-- <div class="content-center brand">
             <div class="card card-signup" data-background-color="blue" style="margin-top:200px">
                     <form class="form"   [formGroup]="signupForm" (ngSubmit)="register()" novalidate>
                         <div class="header text-center">
@@ -63,7 +63,7 @@
                                                 <option value="" selected disabled>Departement</option>
                                                 <option   *ngFor="let dep of departements" value = "{{dep.id}}"><span style="background-color:rgb(228, 13, 31)">{{dep.nom}}</span></option>
                                             </select>
-                                        </div>-->
+                                        </div> //--
                                         <div class="input-group form-group-no-border">
                                                 <span class="input-group-addon">
                                                     <i class="now-ui-icons education_hat"></i>
@@ -83,7 +83,7 @@
                                                     <option *ngFor="let niveau of niveaux" value = "{{niveau.id}}">{{niveau.intitule}}</option>
                                                     
                                                 </select>
-                                            </div>-->
+                                            </div>   //--
                                             <div class="input-group form-group-no-border">
                                                     <span class="input-group-addon">
                                                         <i class="now-ui-icons business_chart-bar-32"></i>
@@ -98,9 +98,9 @@
                                     <span class="input-group-addon">
                                         <i class="now-ui-icons ui-1_email-85"></i>
                                     </span>
-                                   <!-- <input type="text" class="form-control" placeholder="Email..." formControlName="email">-->
+                                   //-- <input type="text" class="form-control" placeholder="Email..." formControlName="email">--//
                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Email" [formControl]="emailFormControl"
+                                        <input matInput placeholder="Email" formControl="emailFormControl"
                                                [errorStateMatcher]="matcher">
                                         <mat-hint>Errors appear instantly!</mat-hint>
                                         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -133,47 +133,603 @@
                 </div>
         
         </div>
+        </div>-->
+      <!--  <div class="content-center brand">
+        <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-title>
+                <mat-toolbar color="primary" style="margin-top:20px;margin-bottom: 20px;">
+                    <span class="spacer"></span>
+                    <h2 style="margin-left:200px;">INSCRIPTION</h2>
+                    <span class="spacer"></span>
+                    </mat-toolbar>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                   <!-- <form class="example-form"   [formGroup]="signupForm" (ngSubmit)="register()" novalidate>
+                        <!--<div class="input-group form-group-no-border">
+                            <span class="input-group-addon">
+                                <i class="now-ui-icons users_circle-08"></i>
+                            </span>
+                           <mat-form-field>
+                                <input matInput type="text" class="form-control" placeholder="Nom" formControlName="nom">
+                            </mat-form-field>
+                            </div>--//
+                            <div class="input-group form-group-no-border">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons users_circle-08"></i>
+                                </span>
+                            <mat-form-field class="example-form-field">
+                                <input matInput type="text" placeholder="Nom" formContolName = "nom" [(ngModel)]="value"/>
+                                <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                                  <mat-icon>close</mat-icon>
+                                </button>
+                              </mat-form-field>
+                              </div>
+
+                            <div class="input-group form-group-no-border">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons users_circle-08"></i>
+                                </span>
+                                <mat-form-field class="example-form-field">
+                                    <input matInput type="text" placeholder="Prenom" formContolName = "prenom" [(ngModel)]="value"/>
+                                    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                                      <mat-icon>close</mat-icon>
+                                    </button>
+                                  </mat-form-field>
+                            </div>
+                            <div class="input-group form-group-no-border">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons emoticons_satisfied"></i>
+                                </span>
+                                
+                                <mat-select class="form-control" placeholder="Sexe" formControlName="sexe" selected="selected" disableRipple>
+                                    <mat-option [value]="M" >Masculin</mat-option>
+                                    <mat-option [value]="F">Feminin</mat-option>
+                                </mat-select>
+                            </div>
+                            <div class="input-group form-group-no-border">
+                                    <span class="input-group-addon">
+                                        <i class="now-ui-icons shopping_credit-card"></i>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Numero CNI..." formControlName="cni">
+                                </div>
+                                <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons shopping_credit-card"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Numero carte etudiant..." formControlName="ce">
+                                    </div>
+                                   <!--<div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <i class="now-ui-icons education_hat"></i>
+                                            </span>
+                                            <select class="form-control" formControlName="departement">
+                                                <option value="" selected disabled>Departement</option>
+                                                <option   *ngFor="let dep of departements" value = "{{dep.id}}"><span style="background-color:rgb(228, 13, 31)">{{dep.nom}}</span></option>
+                                            </select>
+                                        </div> --//
+                                        <div class="input-group form-group-no-border">
+                                                <span class="input-group-addon">
+                                                    <i class="now-ui-icons education_hat"></i>
+                                                </span>
+                                        <mat-select placeholder="Departement" class="form-control" formControlName="departement">
+                                                <mat-option *ngFor="let dep of departements" [value]="dep.id">
+                                                  {{ dep.nom }}
+                                                </mat-option>
+                                       </mat-select>
+                                       </div>
+                                       <!--<div class="input-group form-group-no-border">
+                                                <span class="input-group-addon">
+                                                    <i class="now-ui-icons business_chart-bar-32"></i>
+                                                </span>
+                                                <select class="form-control loader_refresh"  formControlName="niveau">
+                                                    <option value="" selected disabled>Niveau d'etude...</option>
+                                                    <option *ngFor="let niveau of niveaux" value = "{{niveau.id}}">{{niveau.intitule}}</option>
+                                                    
+                                                </select>
+                                            </div>   --//
+                                            <div class="input-group form-group-no-border">
+                                                    <span class="input-group-addon">
+                                                        <i class="now-ui-icons business_chart-bar-32"></i>
+                                                    </span>
+                                            <mat-select placeholder="Niveau" class="form-control"  formControlName="niveau">
+                                                    <mat-option *ngFor="let niveau of niveaux" [value]="niveau.id">
+                                                      {{ niveau.intitule}}
+                                                    </mat-option>
+                                           </mat-select>
+                                           </div>
+                          
+                      
+                        
+                    </form>--
+
+
+                    <div class="card card-signup" data-background-color="blue" style="margin-top:200px">
+                            <form class="form"   [formGroup]="signupForm" (ngSubmit)="register()" novalidate>
+                                <div class="header text-center">
+                                    <h4 class="title title-up">INSCRIPTION</h4>
+                                    <div class="social-line">
+                                        <a href="#" class="btn btn-neutral btn-facebook btn-icon btn-round">
+                                            <i class="fa fa-facebook-square"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-neutral btn-google btn-icon btn-round">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                   <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Nom" formControlName="nom">
+                                    </div>
+                                    <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons users_circle-08"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Prenom" formControlName="prenom">
+                                    </div>
+                                    <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons emoticons_satisfied"></i>
+                                        </span>
+                                        <mat-select class="form-control" placeholder="Sexe" formControlName="sexe">
+                                            <mat-option [value]="M">Masculin</mat-option>
+                                            <mat-option [value]="F">Feminin</mat-option>
+                                        </mat-select>
+                                    </div>
+                                    <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <i class="now-ui-icons shopping_credit-card"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="Numero CNI..." formControlName="cni">
+                                        </div>
+                                        <div class="input-group form-group-no-border">
+                                                <span class="input-group-addon">
+                                                    <i class="now-ui-icons shopping_credit-card"></i>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Numero carte etudiant..." formControlName="ce">
+                                            </div>
+                                           <div class="input-group form-group-no-border">
+                                                    <span class="input-group-addon">
+                                                        <i class="now-ui-icons education_hat"></i>
+                                                    </span>
+                                                    <select class="form-control" formControlName="departement">
+                                                        <option value="" selected disabled>Departement</option>
+                                                        <option   *ngFor="let dep of departements" value = "{{dep.id}}"><span style="background-color:rgb(228, 13, 31)">{{dep.nom}}</span></option>
+                                                    </select>
+                                                </div> 
+                                                <div class="input-group form-group-no-border">
+                                                        <span class="input-group-addon">
+                                                            <i class="now-ui-icons education_hat"></i>
+                                                        </span>
+                                                <mat-select placeholder="Departement" class="form-control" formControlName="departement">
+                                                        <mat-option *ngFor="let dep of departements" [value]="dep.id">
+                                                          {{ dep.nom }}
+                                                        </mat-option>
+                                               </mat-select>
+                                               </div>
+                                                <div class="input-group form-group-no-border">
+                                                        <span class="input-group-addon">
+                                                            <i class="now-ui-icons business_chart-bar-32"></i>
+                                                        </span>
+                                                        <select class="form-control loader_refresh"  formControlName="niveau">
+                                                            <option value="" selected disabled>Niveau d'etude...</option>
+                                                            <option *ngFor="let niveau of niveaux" value = "{{niveau.id}}">{{niveau.intitule}}</option>
+                                                            
+                                                        </select>
+                                                    </div>   
+                                                    <div class="input-group form-group-no-border">
+                                                            <span class="input-group-addon">
+                                                                <i class="now-ui-icons business_chart-bar-32"></i>
+                                                            </span>
+                                                    <mat-select placeholder="Niveau" class="form-control"  formControlName="niveau">
+                                                            <mat-option *ngFor="let niveau of niveaux" [value]="niveau.id">
+                                                              {{ niveau.intitule}}
+                                                            </mat-option>
+                                                   </mat-select>
+                                                   </div>
+                                    <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <i class="now-ui-icons ui-1_email-85"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="Email..." formControlName="email">--//
+                                           <mat-form-field class="example-full-width">
+                                                <input matInput placeholder="Email" formControl="emailFormControl"
+                                                       [errorStateMatcher]="matcher">
+                                                <mat-hint>Errors appear instantly!</mat-hint>
+                                                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                                  Please enter a valid email address
+                                                </mat-error>
+                                                <mat-error *ngIf="emailFormControl.hasError('required')">
+                                                  Email is <strong>required</strong>
+                                                </mat-error>
+                                              </mat-form-field>
+                                        </div>
+                                    <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons objects_key-25"></i>
+                                        </span>
+                                        <input type="password" placeholder="Mot de passe" class="form-control" formControlName="password" />
+                                    </div>
+                                    <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <i class="now-ui-icons objects_key-25"></i>
+                                            </span>
+                                            <input type="password" placeholder="Confirmer Mot de passe" class="form-control" formControlName="confirmP" />
+                                            <span class="error" *ngIf="  signupForm.controls.password.value != signupForm.controls.confirmP.value">Erreur de confirmation</span>
+                                        </div>
+                                </div>
+                                <div class="footer text-center">
+                                    <button type="submit" [disabled]=" ! signupForm.valid || loading" class="btn btn-neutral btn-round btn-lg">Valider</button>
+                                </div>
+                            </form>
+                    </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button  type="submit" [disabled]=" ! signupForm.valid || loading" >Envoyer</button>
+              <button mat-button>Annuler</button>
+            </mat-card-actions>
+          </mat-card>
+
+</div>-->
+
+<!--<div class="container">
+        
+        <div class="content-center brand"  style="margin-top: 200px;">
+        <mat-toolbar color="primary" style="margin-top: 25px;">
+            <span style="flex: 1;"></span>
+            <h2>Inscription</h2>
+            <span style="flex: 1;"></span>
+          </mat-toolbar>
+        <mat-card class="signupcard">
+          <mat-grid-list cols="2" rowHeight="50px">
+            <mat-grid-tile [colspan]="2">
+              <mat-card-header class="headtop">
+                <mat-card-title class="">
+                        Inscrivez vous pour bénéficier de nos services
+                </mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+              </mat-card-header>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <form  [formGroup]="signupForm" (ngSubmit)="register()" >
+            <mat-card-content>
+              
+                  
+                        <i class="now-ui-icons users_circle-08"></i>
+                        <mat-form-field class="example-form-field">
+                            <input matInput type="text" placeholder="Nom" formContolName = "nom" [(value)]="etudiant.nom"/>
+                            <button mat-button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name.value=''">
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </mat-form-field>
+                    <br/>
+                          <i class="now-ui-icons users_circle-08"></i>
+                        <mat-form-field class="example-form-field">
+                            <input matInput type="text" placeholder="Prenom" formContolName = "prenom" />
+                            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </mat-form-field><br/>
+                                <i class="now-ui-icons emoticons_satisfied"></i>
+                           <mat-form-field>
+                            <mat-select placeholder="Sexe" formControlName="sexe" >
+                                <mat-option value="M" >Masculin</mat-option>
+                                <mat-option value="F">Feminin</mat-option>
+                            </mat-select>
+                           </mat-form-field><br/>
+                            <i class="now-ui-icons shopping_credit-card"></i>
+                            <mat-form-field class="example-form-field">
+                                <input matInput type="text" placeholder="Numero carte d'identite" formContolName = "cni" />
+                               <!-- <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="cni=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>--//
+                            </mat-form-field><br/>
+                            <i class="now-ui-icons shopping_credit-card"></i>
+                            <mat-form-field class="example-form-field">
+                                    <input matInput type="text" placeholder="Numero carte d'etudiant" formContolName = "CNE" />
+                                    <!--<button mat-button *ngIf="CNE" matSuffix mat-icon-button aria-label="Clear" (click)="CNE=''">
+                                        <mat-icon>close</mat-icon>
+                                    </button>--//
+                                </mat-form-field><br/>
+                                <i class="now-ui-icons education_hat"></i>
+                                <mat-form-field>
+                                    <mat-select  placeholder="Departement" formControlName="departement">
+                                        <mat-option value=""  disabled>Departement</mat-option>
+                                        <mat-option   *ngFor="let dep of departements" [value] = "dep.id">{{dep.nom}}</mat-option>
+                                    </mat-select>
+                               </mat-form-field><br/>
+                                <i class="now-ui-icons business_chart-bar-32"></i>
+                               <mat-form-field>
+                                    <mat-select placeholder="Niveau"  formControlName="niveau">
+                                            <mat-option *ngFor="let niv of niveaux" [value]="niv.id">
+                                              {{ niv.intitule}}
+                                            </mat-option>
+                                   </mat-select>
+                                </mat-form-field><br/>
+                                
+                                    <i class="now-ui-icons ui-1_email-85"></i>
+                                   <mat-form-field class="example-full-width">
+                                        <input matInput type="email" placeholder="Email" formControl="email">
+                                        <!--<mat-hint>Errors appear instantly!</mat-hint>
+                                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                          Please enter a valid email address
+                                        </mat-error>
+                                        <mat-error *ngIf="emailFormControl.hasError('required')">
+                                          Email is <strong>required</strong>
+                                        </mat-error>--//
+                                      </mat-form-field><br/>
+                                      <i class="now-ui-icons objects_key-25"></i>
+                                      <mat-form-field>
+                                        <input matInput type="password" placeholder="Mot de passe"  formControlName="password" />
+                                      </mat-form-field><br/>
+                                            <i class="now-ui-icons objects_key-25"></i>
+                                        <mat-form-field>
+                                        <input matInput type="password" placeholder="Confirmer Mot de passe"  formControlName="confirmP" />
+                                        <span class="error" *ngIf="  signupForm.controls.password.value != signupForm.controls.confirmP.value">Erreur de confirmation</span>
+                                        </mat-form-field>
+             
+            
+               
+               
+              
+              <!--</mat-grid-list>--//
+            <mat-card-actions>
+             <!-- <mat-grid-list cols="2">
+                <mat-grid-tile [rowspan]="1" [colspan]="2">--//
+                  <button mat-raised-button *ngIf="!loading" color="primary" type="submit" [disabled]=" ! signupForm.valid || loading || signupForm.controls.password.value != signupForm.controls.confirmP.value">S'Inscrire</button>
+                  <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmatEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fmatgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmatsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                  />
+               <!-- </mat-grid-tile>
+                <mat-grid-tile [rowspan]="2" [colspan]="2">--//
+                 <br/><br/><br/> <a [routerLink]="['/authentification']">Vous avez un compte?<button mat-raised-button color="link"> Connectez-Vous</button> </a>
+               <!-- </mat-grid-tile>
+              </mat-grid-list>--//
+      
+            </mat-card-actions>
+            </mat-card-content>
+          </form>
+        </mat-card>
+      </div>
+      
+      <p>{{error}}</p>
+      </div>
+      
+</div>-->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-1">
+            <!--      Wizard container        -->
+            <div class="wizard-container">
+                <div class="card wizard-card" data-color="blue" id="wizardProfile">
+                    <form  [formGroup]="signupForm" (ngSubmit)="register()" novalidate="novalidate">
+                <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+
+                        <div class="wizard-header">
+                            <h3 class="wizard-title">
+                               Inscription
+                            </h3>
+                            <h5>Veuillez remplir vos informations</h5>
+                        </div>
+                        <div class="wizard-navigation">
+                            <ul class="nav nav-pills">
+                                <li class="active" style="width: 33.3333%;"><a href="#about" data-toggle="tab" aria-expanded="true">Informations personnelles</a></li>
+                                <li class="" style="width: 33.3333%;"><a href="#formation" data-toggle="tab" aria-expanded="false">Formation</a></li>
+                                <li class="" style="width: 33.3333%;"><a href="#account" data-toggle="tab" aria-expanded="false">Informations de connexion</a></li>
+                            </ul>
+                        <div class="moving-tab" style="width: 156.667px; transform: translate3d(-8px, 0px, 0px); transition: all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1);">Informations personnelles</div></div>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="about">
+                              <div class="row">
+                                    
+                                    <!--<div class="col-sm-4 col-sm-offset-1">
+                                        <div class="picture-container">
+                                            <div class="picture">
+                                                <img src="assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="">
+                                                <input type="file" id="wizard-picture">
+                                            </div>
+                                            <h6>Choose Picture</h6>
+                                        </div>
+                                    </div>-->
+                                    <div class="col-sm-4">
+                                        <div class="input-group">
+                                                
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">face</i>
+                                            </span>
+                                            
+                                              <mat-form-field>
+                                              <input matInput name="nom" type="text" formControlName="nom"  placeholder = "Nom" required  style="width:250px;">
+                                              </mat-form-field>
+                                            <span class="material-input"></span></div>
+                                        
+                                    </div>
+                                    <div class="col-sm-4 col-sm-offset-2">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">record_voice_over</i>
+                                            </span>
+                                            
+                                              <mat-form-field>
+                                              <input matInput name="prenom" type="text" class=" valid" placeholder="Prenom" formControlName="prenom" required  style="width:250px;">
+                                              </mat-form-field>
+                                            <span class="material-input"></span></div>
+                                    
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    
+                                    <div class="col-sm-4  col-sm-offset-6">
+                                       
+                                            <mat-form-field>
+                                            <mat-select name="sexe" placeholder="Sexe" formControlName="sexe" style="font-size:14px;">
+                                                
+                                                <mat-option value="M">Masculin</mat-option>
+                                                <mat-option value="F"> Feminin </mat-option>
+                                            </mat-select>
+                                            </mat-form-field>
+                                        <span class="material-input"></span></div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">payment</i>
+                                            </span>
+                                            
+                                                <mat-form-field>
+                                             
+                                              <input  matInput name="ce" type="text" placeholder="carte d'etudiant" class="valid" formControlName="ce" required aria-invalid="false" style="width:250px;">
+                                                </mat-form-field>
+                                            <span class="material-input"></span></div>
+                               
+                                    </div>
+                                    <div class="col-sm-4 col-sm-offset-2">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">payment</i>
+                                            </span>
+                                            <mat-form-field>
+                                              <input matInput name="cni" type="text" class=" valid" placeholder="Numero carte d'identite" formControlName="cni" required aria-invalid="false" style="width:250px;">
+                                              </mat-form-field>
+                                            <span class="material-input"></span></div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="formation">
+                                <h4 class="info-text"> What are you doing?  </h4>
+                                 <div class="row">
+                                    <div class="col-sm-4  ">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Departement</label>
+                                            <select name="departement" class="form-control"formControleName="departement" style="font-size:14px;">
+                                                <option disabled="" selected="" value="">Aucun</option>
+                                                <option *ngFor="let dep of departements" [value] = "dep.id">{{dep.nom}}</option>
+                                            </select>
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                    <div class="col-sm-4  col-sm-offset-2">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Niveau</label>
+                                            <select name="niveau" class="form-control" formControlName="niveau" style="font-size:14px;">
+                                                <option disabled="" selected=""></option>
+                                                <option  *ngFor="let niv of niveaux" [value]="niv.id">{{niv.intitule}}</option>
+                                            </select>
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                 </div>
+                            </div>
+                            <div class="tab-pane" id="account">
+                                <div class="row">
+                                    
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">email</i>
+                                            </span>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Email <small>(required)</small></label>
+                                                <input name="email" type="email" formControlName="email" class="form-control valid" aria-required="true" aria-invalid="false" style="width:250px;">
+                                            <span class="material-input"></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4  col-sm-offset-2">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">lock</i>
+                                            </span>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Mot de passe <small>(required)</small></label>
+                                                <input name="password" type="password" formControlName="password" class="form-control valid" aria-required="true" aria-invalid="false" style="width:250px;">
+                                            <span class="material-input"></span></div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4  col-sm-offset-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">lock</i>
+                                        </span>
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Confirmer mot de passe <small>(required)</small></label>
+                                            <input name="password" type="password" formControlName="confirmP" class="form-control valid" aria-required="true" aria-invalid="false" style="width:250px;">
+                                        <span class="material-input"></span></div>
+                                        <span class="error" *ngIf="  signupForm.controls.password.value != signupForm.controls.confirmP.value">Erreur de confirmation</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            </div>
+                        </div>
+                        <div class="wizard-footer">
+                            <div class="pull-right">
+                                <input type="button" class="btn btn-next btn-fill btn-success btn-wd" name="next" value="Next" >
+                                <input type="submit" class="btn btn-finish btn-fill btn-success btn-wd" name="finish" value="Finish" style="display: none;">
+                            </div>
+
+                            <div class="pull-left">
+                                <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+            </div> <!-- wizard container -->
         </div>
-
-
+    </div><!-- end row -->
 </div>
 
 
+
+</div>
 <footer class="footer" data-background-color="black">
-    <div class="container">
-        <nav>
-            <ul>
-                <li>
-                    <a href="https://www.creative-tim.com">
-                        ESP
-                    </a>
-                </li>
-                <li>
-                    <a href="http://presentation.creative-tim.com">
-                        A propos de nous
-                    </a>
-                </li>
-                <li>
-                    <a href="http://blog.creative-tim.com">
-                        Blog
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
-                        MIT License
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="copyright">
-            &copy;
-            <script>
-                document.write(new Date().getFullYear())
-            </script>, Copyright
-            <a href="http://www.invisionapp.com" target="_blank">ESP</a>/
-            <a href="https://www.creative-tim.com" target="_blank">UCAD</a>.
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="https://www.creative-tim.com">
+                            ESP
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://presentation.creative-tim.com">
+                            A propos de nous
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://blog.creative-tim.com">
+                            Blog
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.mat">
+                            MIT License
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>, Copyright
+                <a href="http://www.invisionapp.com" target="_blank">ESP</a>/
+                <a href="https://www.creative-tim.com" target="_blank">UCAD</a>.
+            </div>
         </div>
-    </div>
-</footer>
-</div>
+    </footer>
+
 
