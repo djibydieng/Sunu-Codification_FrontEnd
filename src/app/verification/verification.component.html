@@ -4,7 +4,7 @@
                 </div>
 <div class="container">
   
-        <div class="content-center brand">
+       <!-- <div class="content-center brand">
                 <div class="card card-signup" data-background-color="orange">
                         <form class="form"   [formGroup]="verifierForm" (ngSubmit)="verifierCode()" novalidate>
                             <div class="header text-center">
@@ -30,13 +30,7 @@
                                     <input type="text" placeholder="Code de verification..." class="form-control" formControlName="code" />
                                 </div>
                                
-                                <!-- If you want to add a checkbox to this form, uncomment this code -->
-                                <!-- <div class="checkbox">
-                <input id="checkboxSignup" type="checkbox">
-                  <label for="checkboxSignup">
-                  Unchecked
-                  </label>
-                  </div> -->
+                  
                             </div>
                             <div class="footer text-center">
                                 <button type="submit" [disabled]=" ! verifierForm.valid || loading" class="btn btn-neutral btn-round btn-lg">Confirmer</button>
@@ -47,11 +41,58 @@
                     </div>
             
             </div>
-            </div>
+            </div>-->
+
+            <div class="content-center brand" style="margin-top:20px">
+                    <!-- <div class="card card-signup" data-background-color="blue" style="margin-top:200px">-->
+                      <mat-card>
+                         <mat-card-header>
+                            
+                             
+                                 <mat-toolbar color="primary" style="margin-top:0px;" width="1200">
+                                     <span class="spacer"></span>
+                                     <h2  align="center" style="margin-left:300px;">CONFIRMATION</h2>
+                                     <span class="spacer"></span>
+                                     </mat-toolbar>
+                           
+                             
+                           </mat-card-header>
+                           <label class="label label-info" style="font-size:20px;">Un code vous a été envoyé sur votre email</label>
+                           <form  [formGroup]="verifierForm"  (ngSubmit)="verifierCode()" class="form-horizontal"    novalidate>
+                               <mat-card-content>
+                                  
+                                 <mat-grid-list cols="1" rowHeight="100px">
+                                        <mat-grid-tile  [colspan]="1" class="row">
+                                                <mat-form-field class="biginput" class="col-sm-10" >
+                                                    <input matInput formControlName="email" type="email" name="email" placeholder="Votre email"   >
+                                                </mat-form-field>
+                                            </mat-grid-tile>
+                                   <mat-grid-tile  [colspan]="1" class="row">
+                                       <mat-form-field class="biginput" class="col-sm-10" >
+                                           <input matInput formControlName="code" type="text" name="code" placeholder="Code de confirmation"  autofocus>
+                                       </mat-form-field>
+                                       
+                                   </mat-grid-tile>
+                                   
+                             </mat-grid-list>
+                   
+                   
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <mat-grid-list cols="1" rowHeight="45px">
+                        
+                          <button mat-raised-button *ngIf="!loading" color="primary" type="submit"[disabled] = "! verifierForm.valid" >Valider</button>
+                      
+                      </mat-grid-list>
+                    </mat-card-actions>
+                  </form>
+          
+          </mat-card>
+                  
   
  
 </div>
-
+</div>
 
 <footer class="footer" data-background-color="black">
         <div class="container">

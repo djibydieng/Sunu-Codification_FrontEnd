@@ -1,0 +1,148 @@
+<div class="wrapper text-center">
+  <div class="page-header clear-filter" filter-color="orange">
+          <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/chambre.jpg');">
+          </div>
+<div class="container">
+  <div class="content-center brand" style="margin-top:20px">
+         <!-- <div class="card card-signup" data-background-color="blue" style="margin-top:200px">-->
+           <mat-card>
+              <mat-card-header>
+                 
+                  
+                      <mat-toolbar color="primary" style="margin-top:0px;">
+                          <span class="spacer"></span>
+                          <h2  align="center" style="margin-left:300px;">Mon profil                                  </h2>
+                          <span class="spacer"></span>
+                          </mat-toolbar>
+                
+                  
+                </mat-card-header>
+                <form  [formGroup]="myForm"  (ngSubmit)="updateEtudiant()" class="form-horizontal"    novalidate>
+                    <mat-card-content>
+                        <div *ngIf="!ready;else other_content" align="center">
+                            <mat-spinner class="spinner" align="center"></mat-spinner>
+                        </div>
+                        <ng-template #other_content>
+                      <mat-grid-list cols="1" rowHeight="100px">
+                        <mat-grid-tile  [colspan]="1" class="row">
+                            <mat-form-field class="biginput" class="col-sm-4" >
+                                <input matInput formControlName="nom" type="text" name="nom" class="form-control" placeholder="Nom" [value]="etudiant.nom" autofocus>
+                            </mat-form-field>
+                            
+                             <mat-form-field class="biginput" class="col-sm-4 col-sm-offset-2">
+                                <input matInput formControlName="prenom" type="text" name="prenom" class="form-control" placeholder="Prenom" [value]="etudiant.prenom">
+                            </mat-form-field>
+                            
+                        </mat-grid-tile>
+              
+                        
+              
+                        <mat-grid-tile  [colspan]="1" class="row">
+                            <mat-form-field class="biginput" class="col-sm-4">
+                                <input matInput   type="text" name="ce" class="form-control" placeholder="Numero de carte d'etudiant" [value]="etudiant.numCE">
+                              </mat-form-field>
+                              <mat-form-field class="biginput" class="col-sm-4 col-sm-offset-2">
+                                  <input matInput formControlName="cni"  type="text" name="cni" class="form-control" placeholder="Numero de carte d'identite" [(ngModel)]="etudiant.numCIN">
+                                </mat-form-field>
+                              </mat-grid-tile>
+              
+                        <mat-grid-tile  [colspan]="1" class="row">
+                            <mat-form-field class="biginput" class="col-sm-4">
+                                <input matInput formControlName="sexe" type="text" name="sexe" class="form-control" placeholder="Sexe" [value]="etudiant.sexe" />
+                                </mat-form-field>
+                                <mat-form-field class="biginput" class="col-sm-4 col-offset-2">
+                                    <input matInput formControlName="email" type="email" name="email" class="form-control" placeholder="Email" [value]="etudiant.email" />
+                                    </mat-form-field>
+                        </mat-grid-tile>
+              
+                        <mat-grid-tile  [colspan]="1" class="row">
+                          <mat-form-field class="biginput" class="col-sm-4">
+                           <!-- <input matInput  formControlName = "departement" type="text" name="departement" class="form-control" placeholder="Departement" [value]="etudiant.departementId">-->
+                           <mat-select formControlName = "departement" type="text" name="departement" placeholder="Departement"  >
+                               <div  *ngFor="let dep of departements" >
+                                  
+                            <mat-option [value] = "dep.id" *ngIf="dep.id == etudiant.departementId" selected="selected" >{{dep.nom}}</mat-option>
+                          
+                        </div>
+                           
+                           </mat-select>
+                          </mat-form-field>
+                          <mat-form-field class="biginput" class="col-sm-4 col-sm-offset-2">
+                               
+                                        <!-- <input matInput  formControlName = "niveau" type="text" name="niveau" class="form-control" placeholder="Niveau" [value]="etudiant.niveauId">-->
+                                        <mat-select formControlName = "niveau" type="text" name="niveau" placeholder="Niveau d'etude"  >
+                                            <div  *ngFor="let niv of niveaux" >
+                                               
+                                         <mat-option [value] = "niv.id" *ngIf="niv.id == etudiant.niveauId" selected="selected" >{{niv.intitule}}</mat-option>
+                                       
+                                     </div>
+                                        
+                                        </mat-select>
+                            </mat-form-field>
+                        </mat-grid-tile>
+     
+                      </mat-grid-list>
+                    </ng-template>
+                    
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <mat-grid-list cols="1" rowHeight="25px">
+                        <mat-grid-tile  [colspan]="1">
+                          <button mat-raised-button *ngIf="!loading" color="primary" type="submit" >Modifier mon Profil</button>
+                          
+                          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmatEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fmatgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmatsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                        />
+                      </mat-grid-tile>
+                      </mat-grid-list>
+                    </mat-card-actions>
+                  </form>
+          
+          </mat-card>
+                  
+             <!-- </div>-->
+      
+      </div>
+      </div>
+
+
+
+
+
+<footer class="footer" data-background-color="black">
+  <div class="container">
+      <nav>
+          <ul>
+              <li>
+                  <a href="https://www.creative-tim.com">
+                      ESP
+                  </a>
+              </li>
+              <li>
+                  <a href="http://presentation.creative-tim.com">
+                      A propos de nous
+                  </a>
+              </li>
+              <li>
+                  <a href="http://blog.creative-tim.com">
+                      Blog
+                  </a>
+              </li>
+              <li>
+                  <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.mat">
+                      MIT License
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      <div class="copyright">
+          &copy;
+          <script>
+              document.write(new Date().getFullYear())
+          </script>, Copyright
+          <a href="http://www.invisionapp.com" target="_blank">ESP</a>/
+          <a href="https://www.creative-tim.com" target="_blank">UCAD</a>.
+      </div>
+  </div>
+</footer>
+</div>
+</div>

@@ -4,6 +4,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentification/authentification.service';
 import { AlertService } from '../authentification/alert.service';
+import { ValidationService } from '../authentification/validation.service';
 
 
 
@@ -20,7 +21,8 @@ export class VerificationComponent implements OnInit {
     loading = false;
     returnUrl: string;
     error: string;
-    email:string;
+    email:string ;
+    
 
     constructor(
         private route: ActivatedRoute,
@@ -36,16 +38,16 @@ export class VerificationComponent implements OnInit {
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.email = this.route.snapshot.queryParams['email'];
-        
+    
 
     }
 
 
     verifierCode() {
         this.loading = true;
-        console.log(this.email);
+        console.log(this.verifierForm.controls.email.value);
         console.log(this.verifierForm.controls.code.value);
-        this.authenticationService.verifierCode(this.email, this.verifierForm.controls.code.value)
+        this.authenticationService.verifierCode(this.verifierForm.controls.email.value, this.verifierForm.controls.code.value)
             .subscribe(
 
                 data => {
@@ -60,6 +62,8 @@ export class VerificationComponent implements OnInit {
     }
     createForm(){
         this.verifierForm = this.fb.group({
+            email:['', Validators.compose([
+                ValidationService.emailValidator])],
             code: ['', Validators.required]
         });
 
