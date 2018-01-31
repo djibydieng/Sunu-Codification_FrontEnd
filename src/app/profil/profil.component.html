@@ -26,11 +26,11 @@
                       <mat-grid-list cols="1" rowHeight="100px">
                         <mat-grid-tile  [colspan]="1" class="row">
                             <mat-form-field class="biginput" class="col-sm-4" >
-                                <input matInput formControlName="nom" type="text" name="nom" class="form-control" placeholder="Nom" [value]="etudiant.nom" autofocus>
+                                <input matInput formControlName="nom" type="text" name="nom" class="form-control" placeholder="Nom" [(value)]="etudiant.nom" autofocus>
                             </mat-form-field>
                             
                              <mat-form-field class="biginput" class="col-sm-4 col-sm-offset-2">
-                                <input matInput formControlName="prenom" type="text" name="prenom" class="form-control" placeholder="Prenom" [value]="etudiant.prenom">
+                                <input matInput formControlName="prenom" type="text" name="prenom" class="form-control" placeholder="Prenom" [(value)]="etudiant.prenom">
                             </mat-form-field>
                             
                         </mat-grid-tile>
@@ -39,7 +39,7 @@
               
                         <mat-grid-tile  [colspan]="1" class="row">
                             <mat-form-field class="biginput" class="col-sm-4">
-                                <input matInput   type="text" name="ce" class="form-control" placeholder="Numero de carte d'etudiant" [value]="etudiant.numCE">
+                                <input matInput   type="text" name="ce" class="form-control" placeholder="Numero de carte d'etudiant" [(value)]="etudiant.numCE">
                               </mat-form-field>
                               <mat-form-field class="biginput" class="col-sm-4 col-sm-offset-2">
                                   <input matInput formControlName="cni"  type="text" name="cni" class="form-control" placeholder="Numero de carte d'identite" [(ngModel)]="etudiant.numCIN">
@@ -48,10 +48,10 @@
               
                         <mat-grid-tile  [colspan]="1" class="row">
                             <mat-form-field class="biginput" class="col-sm-4">
-                                <input matInput formControlName="sexe" type="text" name="sexe" class="form-control" placeholder="Sexe" [value]="etudiant.sexe" />
+                                <input matInput formControlName="sexe" type="text" name="sexe" class="form-control" placeholder="Sexe" [(value)]="etudiant.sexe" />
                                 </mat-form-field>
                                 <mat-form-field class="biginput" class="col-sm-4 col-offset-2">
-                                    <input matInput formControlName="email" type="email" name="email" class="form-control" placeholder="Email" [value]="etudiant.email" />
+                                    <input matInput formControlName="email" type="email" name="email" class="form-control" placeholder="Email" [(value)]="etudiant.email" />
                                     </mat-form-field>
                         </mat-grid-tile>
               
@@ -61,7 +61,7 @@
                            <mat-select formControlName = "departement" type="text" name="departement" placeholder="Departement"  >
                                <div  *ngFor="let dep of departements" >
                                   
-                            <mat-option [value] = "dep.id" *ngIf="dep.id == etudiant.departementId" selected="selected" >{{dep.nom}}</mat-option>
+                            <mat-option [value] = "dep.id" selected="dep.id == etudiant.departementId"  >{{dep.nom}}</mat-option>
                           
                         </div>
                            
@@ -71,9 +71,10 @@
                                
                                         <!-- <input matInput  formControlName = "niveau" type="text" name="niveau" class="form-control" placeholder="Niveau" [value]="etudiant.niveauId">-->
                                         <mat-select formControlName = "niveau" type="text" name="niveau" placeholder="Niveau d'etude"  >
+                                                
                                             <div  *ngFor="let niv of niveaux" >
-                                               
-                                         <mat-option [value] = "niv.id" *ngIf="niv.id == etudiant.niveauId" selected="selected" >{{niv.intitule}}</mat-option>
+                                              
+                                         <mat-option [value] = "niv.id" *ngIf="niv.id == etudiant.niveauId" >{{niv.intitule}}</mat-option>
                                        
                                      </div>
                                         
@@ -82,20 +83,23 @@
                         </mat-grid-tile>
      
                       </mat-grid-list>
-                    </ng-template>
                     
-                    </mat-card-content>
+                    
+                    
                     <mat-card-actions>
-                      <mat-grid-list cols="1" rowHeight="25px">
+                      <mat-grid-list cols="1" rowHeight="30px">
                         <mat-grid-tile  [colspan]="1">
                           <button mat-raised-button *ngIf="!loading" color="primary" type="submit" >Modifier mon Profil</button>
                           
-                          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmatEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fmatgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmatsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                          <img *ngIf="loading" src="./assets/images/icons/Loading_ico.gif"
                         />
                       </mat-grid-tile>
                       </mat-grid-list>
                     </mat-card-actions>
+                </ng-template>
+            </mat-card-content>
                   </form>
+                  <p>{{errors}}</p>
           
           </mat-card>
                   

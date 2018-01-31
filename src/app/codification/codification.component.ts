@@ -15,6 +15,7 @@ import { Couloir } from '../models/couloir';
 import { Chambre } from '../models/chambre';
 import { Codification } from '../models/codification';
 import { Router } from '@angular/router';
+import { Etudiant } from '../models/Etudiant';
 @Component({
   selector: 'app-codification',
   templateUrl: './codification.component.html',
@@ -30,21 +31,21 @@ export class CodificationComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   forthFormGroup: FormGroup;
+  fifthFormGroup: FormGroup;
   batiments:Batiment[];
   etages:Etage[];
   couloirs:Couloir[];
   chambres: Chambre[];
+  etudiant:Etudiant;
   ready: boolean;
+  positions = ["1","2","3","4"];
    userId = JSON.parse(localStorage.getItem('currentUser')).userId;
   constructor(private fb: FormBuilder,private router:Router,private etudiantService:EtudiantService) {
     this.resetCodification();
    }
 
   ngOnInit() {
-   /* this.myformGroup = this.fb.group({
-      items: this.fb.array([ this.createItem() ])
-      
-    })*/
+ 
     console.log(this.userId);
     this.firstFormGroup = this.fb.group({
       firstCtrl:[]
@@ -58,23 +59,27 @@ export class CodificationComponent implements OnInit {
     this.forthFormGroup = this.fb.group({
       forthCtrl:['']
     });
+    this.fifthFormGroup = this.fb.group({
+      fifthCtrl:['']
+    });
+    this.loadEtudiant();
     this.loadAllBatiment();
     this.loadAllEtages();
     this.loadAllCouloirs();
     this.loadAllChambres();
     this.loadAllCodifications();
     
+    
 
 }
 
-/*createItem(): FormGroup {
-  return this.fb.group({
-    firstCtrl:'',
-      secondCtrl:'',
-      thirdCtrl:'',
-      forthCtrl:''
-  });
-}*/
+loadEtudiant():void
+{
+  this.etudiantService.getEtudiantById(this.userId).subscribe(etudiant => {
+    this.etudiant = etudiant;
+    //this.ready = true;
+  })
+}
 isCodified():boolean{
   if(this.codifications !=null){
   for(let codif of this.codifications)
@@ -127,12 +132,25 @@ add():void {
   console.log(this.codification);
 }
 resetCodification():void {
-  this.codification = new Codification({id:"",chambreId:"",etudiantId:this.userId,date:new Date(),position:2});
+  this.codification = new Codification({id:"",chambreId:"",etudiantId:this.userId,date:new Date()});
   
 }
 goback():void{
   this.router.navigate(['/accueil']);
 }
+
+ExistPos(pos:number):boolean{
+  if(this.codifications !=null)
+  {
+    for(let codif of this.codifications)
+    {
+      if(codif.position == pos)
+        return true;
+        else return false;
+    }
+  }
+}
+
 }
 
 

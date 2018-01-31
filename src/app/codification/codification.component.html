@@ -71,7 +71,7 @@
                           <mat-select  formControlName="thirdCtrl" [(value)]="coul"  placeholder="Couloir" required>
                             <mat-option>None</mat-option>
                             <span *ngFor="let couloir of couloirs">
-                            <mat-option *ngIf="couloir.etageId == et" [value]="couloir.id">{{couloir.designation}}</mat-option>
+                            <mat-option *ngIf="(couloir.etageId == et) && (couloir.sexe == etudiant.sexe)" [value]="couloir.id">{{couloir.designation}}</mat-option>
                             </span>
                           </mat-select>
                         </mat-form-field>
@@ -89,7 +89,7 @@
                               <mat-option>None</mat-option>
                               <span *ngFor="let chambre of chambres">
                                 <span *ngFor="let codif of codifications">
-                              <mat-option *ngIf="chambre.couloirId == coul" [value]="chambre.id" [disabled]="(codif.chambreId == chambre.id) && (codif.position == chambre.nbpositions)">{{chambre.code}}</mat-option>
+                              <mat-option *ngIf="chambre.couloirId == coul" [value]="chambre.id" [hidden]="chambre.reserve" [disabled]=" (chambre.nbpositions == chambre.nbposres)">{{chambre.code}}</mat-option>
                             </span>
                               </span>
                             </mat-select>
@@ -100,6 +100,26 @@
                           </div>
                         </form>
                       </mat-step>
+                      <mat-step [stepControl]="fifthFormGroup">
+                          <form [formGroup]="fifthFormGroup" (ngSubmit)="add()">
+                            <ng-template matStepLabel>Choisissez votre position</ng-template>
+                            <mat-form-field>
+                              <mat-select  formControlName="fifthCtrl" [(value)]="pos" placeholder="Position" [(ngModel)]="codification.position" required>
+                                <mat-option>None</mat-option>
+                                
+                                <span *ngFor="let p of positions;let i = index">
+                                    <!--<span *ngFor="let codif of codifications">-->
+                                <mat-option  [value]="i+1" [hidden] ="ExistPos('i+1')">{{i+1}}</mat-option>
+                                 <!-- </span>-->
+                                </span>
+                              </mat-select>
+                            </mat-form-field>
+                            <div>
+                              <button mat-button matStepperPrevious>Back</button>
+                              <button mat-button type="submit" matStepperNext>Next</button>
+                            </div>
+                          </form>
+                        </mat-step>
                   <mat-step>
                     <ng-template matStepLabel>Terminé</ng-template>
                     Félicitations vous avez terminé votre codification

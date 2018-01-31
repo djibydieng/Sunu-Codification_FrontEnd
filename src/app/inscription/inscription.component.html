@@ -269,6 +269,8 @@
                      <mat-grid-list cols="1" rowHeight="45px">
                        
                          <button mat-raised-button *ngIf="!loading" color="primary" type="submit"[disabled] = "! signupForm.valid" >S'inscrire</button><br/><br/>
+                         <img *ngIf="loading" src="./assets/images/icons/Loading_ico.gif" width="10" height="5"
+                         />
                          
                        Vous avez deja un compte <a routerLink="/authentification">Connectez-Vous</a>
                      
