@@ -109,7 +109,7 @@
                                 
                                 <span *ngFor="let p of positions;let i = index">
                                     <!--<span *ngFor="let codif of codifications">-->
-                                <mat-option  [value]="i+1" [hidden] ="ExistPos('i+1')">{{i+1}}</mat-option>
+                                <mat-option  [value]="i+1" [hidden] ="ExistPos(i+1)">{{i+1}}</mat-option>
                                  <!-- </span>-->
                                 </span>
                               </mat-select>

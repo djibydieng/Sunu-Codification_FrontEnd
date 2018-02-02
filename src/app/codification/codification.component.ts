@@ -144,8 +144,9 @@ ExistPos(pos:number):boolean{
   {
     for(let codif of this.codifications)
     {
-      if(codif.position == pos)
+      if(codif.position == pos){
         return true;
+      }
         else return false;
     }
   }
