@@ -70,6 +70,11 @@ ready:boolean;
 
   createForm():void {
     this.myForm = this.fb.group({
+      id:[
+        "",
+        Validators.compose([
+          Validators.required])
+      ],
       nom:[
         ""
       ],
@@ -107,6 +112,11 @@ ready:boolean;
           ValidationService.emailValidator
         ])
       ],
+      password:[
+        "",
+        Validators.compose([
+          Validators.required])
+      ]
     })
   }
 
@@ -115,6 +125,7 @@ ready:boolean;
 
     let observable;
     var user = new Etudiant();
+    user.id = this.myForm.value.id;
     user.nom = this.myForm.value.nom;
     user.prenom = this.myForm.value.prenom;
     user.sexe = this.myForm.value.sexe;
@@ -123,14 +134,16 @@ ready:boolean;
     user.departementId = this.myForm.value.departement;
     user.niveauId = this.myForm.value.niveau;
     user.email = this.myForm.value.email;
+    user.password = this.myForm.value.password;
+    user.emailVerified = true;
     
     
-    observable = this.etudiantService.create(user);
+    observable = this.etudiantService.updateProfile(user);
     observable.subscribe(
       //this.etudiantService.create(user).subscribe(
       data => {
-        this.alertService.success("Registration successful", true);
-        this.router.navigate(["/verifierCode",this.myForm.controls.email.value]);
+        this.alertService.success("Modification successful", true);
+        this.router.navigate(["/accueil"]);
       },
       error => {
         this.alertService.error(error);

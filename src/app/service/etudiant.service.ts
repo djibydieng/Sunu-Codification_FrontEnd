@@ -33,7 +33,7 @@ export class EtudiantService {
         return this.dal.create(['etudiants', id], profile);
     }
     updateProfile(etudiant: Etudiant) {
-        return this.dal.update(['etudiants'], etudiant);
+        return this.dal.update(['etudiants',etudiant.id], etudiant);
     }
     getAllCodifications()
     {

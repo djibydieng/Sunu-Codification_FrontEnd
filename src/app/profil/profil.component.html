@@ -5,15 +5,15 @@
 <div class="container">
   <div class="content-center brand" style="margin-top:20px">
          <!-- <div class="card card-signup" data-background-color="blue" style="margin-top:200px">-->
-           <mat-card>
+           <mat-card style="margin-top:50px">
               <mat-card-header>
                  
                   
-                      <mat-toolbar color="primary" style="margin-top:0px;">
+                       <mat-toolbar color="primary" style="margin-top:0px;">
                           <span class="spacer"></span>
                           <h2  align="center" style="margin-left:300px;">Mon profil                                  </h2>
                           <span class="spacer"></span>
-                          </mat-toolbar>
+                        </mat-toolbar>
                 
                   
                 </mat-card-header>
@@ -24,6 +24,7 @@
                         </div>
                         <ng-template #other_content>
                       <mat-grid-list cols="1" rowHeight="100px">
+                         <input type="hidden" formControlName="id" name="id" [(ngModel)]="etudiant.id" autofocus/>
                         <mat-grid-tile  [colspan]="1" class="row">
                             <mat-form-field class="biginput" class="col-sm-4" >
                                 <input matInput formControlName="nom" type="text" name="nom" class="form-control" placeholder="Nom" [(value)]="etudiant.nom" autofocus>
@@ -39,19 +40,26 @@
               
                         <mat-grid-tile  [colspan]="1" class="row">
                             <mat-form-field class="biginput" class="col-sm-4">
-                                <input matInput   type="text" name="ce" class="form-control" placeholder="Numero de carte d'etudiant" [(value)]="etudiant.numCE">
+                                <input matInput formControlName="ce"  type="text" name="ce" class="form-control" placeholder="Numero de carte d'etudiant" [(value)]="etudiant.numCE">
                               </mat-form-field>
                               <mat-form-field class="biginput" class="col-sm-4 col-sm-offset-2">
-                                  <input matInput formControlName="cni"  type="text" name="cni" class="form-control" placeholder="Numero de carte d'identite" [(ngModel)]="etudiant.numCIN">
+                                  <input matInput formControlName="cni"  type="text" name="cni" class="form-control" placeholder="Numero de carte d'identite" [(value)]="etudiant.numCIN">
                                 </mat-form-field>
                               </mat-grid-tile>
               
                         <mat-grid-tile  [colspan]="1" class="row">
                             <mat-form-field class="biginput" class="col-sm-4">
-                                <input matInput formControlName="sexe" type="text" name="sexe" class="form-control" placeholder="Sexe" [(value)]="etudiant.sexe" />
+                               <!-- <input matInput formControlName="sexe" type="text" name="sexe" class="form-control" placeholder="Sexe" [(value)]="etudiant.sexe" />-->
+                               <mat-select formControlName="sexe" type="text" placeholder="Sexe" name="sexe" >
+                                   <mat-option value = "M" *ngIf="'M' == etudiant.sexe" style="background-color:rgb(29, 46, 194);">Masculin</mat-option>
+                                   <mat-option value = "F" *ngIf=" 'F' == etudiant.sexe" style="background-color:rgb(67, 67, 250);">Feminin</mat-option>
+
+                                   <mat-option value = "M" *ngIf="'M' != etudiant.sexe" >Masculin</mat-option>
+                                   <mat-option value = "F" *ngIf=" 'F' != etudiant.sexe" >Feminin</mat-option>
+                               </mat-select>
                                 </mat-form-field>
-                                <mat-form-field class="biginput" class="col-sm-4 col-offset-2">
-                                    <input matInput formControlName="email" type="email" name="email" class="form-control" placeholder="Email" [(value)]="etudiant.email" />
+                                <mat-form-field class="biginput" class="col-sm-4 col-sm-offset-2">
+                                    <input matInput formControlName="email" type="email" name="email" placeholder="Email" [(value)]="etudiant.email" />
                                     </mat-form-field>
                         </mat-grid-tile>
               
@@ -60,8 +68,8 @@
                            <!-- <input matInput  formControlName = "departement" type="text" name="departement" class="form-control" placeholder="Departement" [value]="etudiant.departementId">-->
                            <mat-select formControlName = "departement" type="text" name="departement" placeholder="Departement"  >
                                <div  *ngFor="let dep of departements" >
-                                  
-                            <mat-option [value] = "dep.id" selected="dep.id == etudiant.departementId"  >{{dep.nom}}</mat-option>
+                            <mat-option [value] = "dep.id" *ngIf="dep.id != etudiant.departementId" >{{dep.nom}}</mat-option>  
+                            <mat-option [value] = "dep.id" *ngIf="dep.id == etudiant.departementId" style="background-color:blue;">{{dep.nom}}</mat-option>
                           
                         </div>
                            
@@ -73,26 +81,34 @@
                                         <mat-select formControlName = "niveau" type="text" name="niveau" placeholder="Niveau d'etude"  >
                                                 
                                             <div  *ngFor="let niv of niveaux" >
-                                              
-                                         <mat-option [value] = "niv.id" *ngIf="niv.id == etudiant.niveauId" >{{niv.intitule}}</mat-option>
+                                            <mat-option [value] = "niv.id" *ngIf="niv.id != etudiant.niveauId" >{{niv.intitule}}</mat-option>  
+                                           <mat-option [value] = "niv.id" *ngIf="niv.id == etudiant.niveauId" style="background-color:blue;">{{niv.intitule}}</mat-option>
                                        
                                      </div>
                                         
                                         </mat-select>
                             </mat-form-field>
                         </mat-grid-tile>
+
+                           <mat-grid-tile  [colspan]="1" class="row">
+                          
+                              <mat-form-field class="biginput" class="col-sm-10 ">
+                                  <input matInput formControlName="password"  type="text" name="password"  placeholder="Votre nouveau mot de passe">
+                                </mat-form-field>
+                              </mat-grid-tile>
+                             
      
                       </mat-grid-list>
                     
                     
                     
                     <mat-card-actions>
-                      <mat-grid-list cols="1" rowHeight="30px">
+                      <mat-grid-list cols="1" rowHeight="100px">
                         <mat-grid-tile  [colspan]="1">
                           <button mat-raised-button *ngIf="!loading" color="primary" type="submit" >Modifier mon Profil</button>
                           
                           <img *ngIf="loading" src="./assets/images/icons/Loading_ico.gif"
-                        />
+                         />
                       </mat-grid-tile>
                       </mat-grid-list>
                     </mat-card-actions>
